@@ -1,0 +1,20 @@
+{
+  "name": "icd10-dashboard-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jemd",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "latest",
+    "angular-materialize": "^0.2.2",
+    "angular-ui-router": "^1.0.3",
+    "animate.css": "latest",
+    "fontawesome": "latest",
+    "jquery": "^2.2.4",
+    "materialize-css": "latest"
+  }
+}

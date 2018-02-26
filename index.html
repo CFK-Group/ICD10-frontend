@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es" class="no-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ICD10 Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.css">
+    <link rel="stylesheet" href="app/css/style.css">
+</head>
+<body ng-app="Dashboard" class="grey lighten-3">
+
+    <!--Inyeccion de vistas-->
+    <main ui-view></main>
+    <main ui-view="dashboard"></main>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="node_modules/angular-materialize/src/angular-materialize.js"></script>
+    <script src="app/libs/fontawesome-free-5.0.6/svg-with-js/js/fontawesome-all.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/controllers.js"></script>
+    <script src="app/js/script.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+</body>
+</html>
