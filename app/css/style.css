@@ -8,8 +8,11 @@ aside#left-menu ul li{
     padding: 15px 0 !important;
 }
 .no-scroll{
-    overflow-y:hidden;
+    overflow-y: hidden;
 }
 .text-shadow {
     text-shadow: 2px 2px 4px #000000;
+}
+.container {
+    width: 95%;
 }
