@@ -1,0 +1,20 @@
+<section class="row center">
+    <div class="row"></div>
+    <div class="card white darken-1 col m6 offset-m3 hoverable">
+        <form ng-submit="uploadFile()" class="card-content">
+            <h4>Cargar archivo ICD10</h4>
+            <div class="file-field input-field">
+                <div class="btn orange">
+                    <span>Seleccione Archivo</span>
+                    <input type="file" name="file" files-model="csv.file" required>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="card-action center">
+                <input class="btn waves-effect waves-light red darken-3" type="submit" id="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+</section>

@@ -10,9 +10,6 @@ aside#left-menu ul li{
 .no-scroll{
     overflow-y:hidden;
 }
-.active{
-    rgba(0, 0, 0, 0.1);
-}
 .text-shadow {
     text-shadow: 2px 2px 4px #000000;
 }

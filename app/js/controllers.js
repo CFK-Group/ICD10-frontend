@@ -27,14 +27,25 @@ app.controller('HomeCtrl', function ($scope) {
         id: 'chartDiv3',
         data: chartData
     });
-});
+})
 
-1223
-5790
-1293
-171
-1
-27
-1626
-738
-1110
+.controller('UploadCtrl', function($scope){
+    $scope.uploadFile = function(){
+        var name = $scope.csv.file.name;
+        var file = $scope.csv.file;
+    }
+})
+
+.controller('Icd10sCtrl', function($scope, apiConnection, $rootScope){
+    apiConnection.getICD10s().query().$promise.then(
+        function(response){
+            $rootScope.icd10s = JSON.parse(JSON.stringify(response));
+        },
+        function(err){
+            console.log('Error: ', err);
+            throw err
+        }
+    )
+})
+
+;
