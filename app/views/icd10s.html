@@ -1,7 +1,5 @@
-<section class="container">
-    <div class="row"></div>
-    <div class="row"></div>
-    <table class="striped responsive-table card-panel white">
+<section class="row">
+    <table class="striped responsive-table card-panel white centered responsive-table col m12 margin">
         <thead class="orange">
             <tr>
                 <th>id</th>
@@ -21,7 +19,6 @@
                 <th>number_of_second_viewed_in_trick_mode</th>
                 <th>number_of_second_paused</th>
                 <th>tuner_type</th>
-                <th>box_type</th>
                 <th>time_zone</th>
                 <th>watch_probability</th>
                 <th>time_since_last_key_press</th>
@@ -47,7 +44,6 @@
                 <td>{{icd10.number_of_second_viewed_in_trick_mode}}</td>
                 <td>{{icd10.number_of_second_paused}}</td>
                 <td>{{icd10.tuner_type}}</td>
-                <td>{{icd10.box_type}}</td>
                 <td>{{icd10.time_zone}}</td>
                 <td>{{icd10.watch_probability}}</td>
                 <td>{{icd10.time_since_last_key_press}}</td>
@@ -55,4 +51,15 @@
             </tr>
         </tbody>
     </table>
+    <pagination
+            page="1"
+            page-size="10"
+            total="200"
+            show-prev-next="true"
+            use-simple-prev-next="false"
+            dots="...."
+            hide-if-empty="false"
+            adjacent="2"
+            scroll-top="true"
+            pagination-action="changePage(page)" />
 </section>

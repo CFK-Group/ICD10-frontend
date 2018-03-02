@@ -29,15 +29,43 @@ app.controller('HomeCtrl', function ($scope) {
     });
 })
 
-.controller('UploadCtrl', function($scope){
+.controller('UploadCtrl', function($scope, apiConnection){
+    $scope.csvToJson = function(csv){
+
+        var lines = csv.split("\n");
+
+        var result = [];
+
+        var headers = lines[0].split(";");
+        for(var i = 1; i < lines.length; i++){
+            var obj = {};
+            var currentline = lines[i].split(";");
+            for(var j = 0; j < headers.length; j++){
+                obj[headers[j]] = currentline[j];
+            }
+            result.push(obj);
+        }
+        return result //JSON
+    };
     $scope.uploadFile = function(){
-        var name = $scope.csv.file.name;
-        var file = $scope.csv.file;
+        $scope.icd10s = $scope.csvToJson($scope.csv.file);
+
+        apiConnection.uploadCSV().save($scope.icd10s).$promise.then(
+            function(data){
+                console.log(data);
+                alert('archivo enviado');
+            },
+            function(err){
+                console.log("Error: ", err);
+                alert('error');
+            }
+        )
     }
 })
 
 .controller('Icd10sCtrl', function($scope, apiConnection, $rootScope){
-    apiConnection.getICD10s().query().$promise.then(
+    $scope.quantity = 100;
+    apiConnection.getICD10s(1, $scope.quantity).query().$promise.then(
         function(response){
             $rootScope.icd10s = JSON.parse(JSON.stringify(response));
         },
@@ -45,7 +73,26 @@ app.controller('HomeCtrl', function ($scope) {
             console.log('Error: ', err);
             throw err
         }
-    )
+    );
+    apiConnection.countICD10s().query().$promise.then(
+        function(response){
+            $rootScope.icd10Quantity = JSON.parse(JSON.stringify(response))[0].number;
+        },
+        function(err){
+            throw err
+        }
+    );
+    $scope.changePage = function(lastId){
+        apiConnection.getICD10s(lastId, $scope.quantity).query().$promise.then(
+            function(response){
+                $rootScope.icd10s = JSON.parse(JSON.stringify(response));
+            },
+            function(err){
+                console.log('Error: ', err);
+                throw err
+            }
+        );
+    }
 })
 
 ;

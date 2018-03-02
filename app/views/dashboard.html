@@ -1,20 +1,18 @@
 <div class="row">
-    <aside id="left-menu" class="col m2 no-padding red darken-3 z-depth-1">
-        <ul>
-            <li>
-                <div class="user-view center">
-                    <i class="fas fa-user-circle fa-6x white-text"></i>
-                    <a ui-sref="dashboard.home" class="center"><h4 class="white-text">Nombre Usuario</h4></a>
-                    <a ui-sref="dashboard.home" class="center"><h5 class="white-text">correo@correo.cl</h5></a>
-                </div>
-            </li>
-            <li><div class="divider"></div></li>
-            <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.home"><h5><i class="fas fa-tachometer-alt icon-margin"></i>Dashboard</h5></a></li>
-            <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.upload"><h5><i class="fas fa-upload icon-margin"></i>Subir CSV</h5></a></li>
-            <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.icd10s"><h5><i class="fas fa-file-alt icon-margin"></i>ICD10's</h5></a></li>
-        </ul>
-    </aside>
-    <section class="col m10 no-padding">
+    <ul id="slide-out" class="side-nav fixed red darken-3">
+        <li>
+            <div class="user-view center">
+                <i class="fas fa-user-circle fa-6x white-text"></i>
+                <a ui-sref="dashboard.home" class="center"><h4 class="white-text">Nombre Usuario</h4></a>
+                <a ui-sref="dashboard.home" class="center"><h5 class="white-text">correo@correo.cl</h5></a>
+            </div>
+        </li>
+        <li><div class="divider"></div></li>
+        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.home"><i class="fas fa-tachometer-alt icon-margin"></i>Dashboard</a></li>
+        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.upload"><i class="fas fa-upload icon-margin"></i>Subir CSV</a></li>
+        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.icd10s"><i class="fas fa-file-alt icon-margin"></i>ICD10's</a></li>
+    </ul>
+    <div class="navbar-fixed">
         <nav class="red darken-3">
             <div class="nav-wrapper">
                 <ul class="right hide-on-med-and-down">
@@ -25,6 +23,6 @@
                 </ul>
             </div>
         </nav>
-        <div ui-view="dashboard"></div>
-    </section>
+    </div>
+    <div ui-view="dashboard"></div>>
 </div>

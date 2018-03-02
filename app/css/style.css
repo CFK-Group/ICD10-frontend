@@ -1,18 +1,19 @@
-#left-menu{
-    height: 100vh;
+header, main, footer{
+    padding-left: 300px;
 }
 .icon-margin{
-    margin: 0 15px 0 25px;
-}
-aside#left-menu ul li{
-    padding: 15px 0 !important;
-}
-.no-scroll{
-    overflow-y: hidden;
+    margin-right: 15px;
 }
 .text-shadow {
     text-shadow: 2px 2px 4px #000000;
 }
-.container {
-    width: 95%;
+.margin{
+    margin: 20px !important;
+}
+.side-nav li>a {
+    font-size: 25px;
+    height: 58px;
+}
+.side-nav{
+    width: 320px;
 }
