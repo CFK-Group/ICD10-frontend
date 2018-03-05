@@ -1,5 +1,10 @@
 header, main, footer{
-    padding-left: 300px;
+    /*padding-left: 300px;*/
+    padding-left: 19%;
+}
+.content{
+    margin: 1.5%;
+    width: 94%;
 }
 .icon-margin{
     margin-right: 15px;
@@ -10,10 +15,37 @@ header, main, footer{
 .margin{
     margin: 20px !important;
 }
-.side-nav li>a {
+/*.side-nav li>a {
     font-size: 25px;
     height: 58px;
+}*/
+
+.side-nav li>a:first-child {
+    margin-top:0;
 }
+
 .side-nav{
-    width: 320px;
+    width: 20%;
+}
+
+.dashboard-title{
+    font-size: 20px;
+    margin: 2%;
+}
+
+.dashboard-subtitle{
+    font-size: 16px;
+    margin: 2%;
+}
+
+.dashboard-text{
+    font-size: 15px;
+}
+
+.dashboard-btn-text{
+    font-size: 13px;
+}
+
+.divider{
+    margin: 10% 0 0 0 !important;
 }

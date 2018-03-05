@@ -2,10 +2,11 @@
     <div class="row"></div>
     <div class="card white darken-1 col m6 offset-m3 hoverable">
         <form ng-submit="uploadFile()" class="card-content" enctype='multipart/form-data'>
-            <h4>Cargar archivo ICD10</h4>
+            <h4 class="dashboard-title">Cargar archivo ICD10</h4>
+            <br>
             <div class="file-field input-field">
                 <div class="btn orange">
-                    <span>Seleccione Archivo</span>
+                    <span class="dashboard-btn-text">Seleccione Archivo</span>
                     <input type="file" name="file"  file-reader="csv.file" accept=".csv" required>
                 </div>
                 <div class="file-path-wrapper">
@@ -13,7 +14,7 @@
                 </div>
             </div>
             <div class="card-action center">
-                <input class="btn waves-effect waves-light red darken-3" type="submit" id="submit" value="Enviar">
+                <input class="btn waves-effect waves-light red darken-3 dashboard-btn-text" type="submit" id="submit" value="Enviar">
             </div>
         </form>
     </div>
