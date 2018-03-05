@@ -2,20 +2,20 @@
     <ul id="slide-out" class="side-nav fixed red darken-3">
         <li>
             <div class="user-view center">
-                <i class="fas fa-user-circle fa-6x white-text"></i>
-                <a ui-sref="dashboard.home" class="center"><h4 class="white-text">Nombre Usuario</h4></a>
-                <a ui-sref="dashboard.home" class="center"><h5 class="white-text">correo@correo.cl</h5></a>
+                <i class="fas fa-user-circle fa-4x white-text"></i>
+                <a ui-sref="dashboard.home" class="center"><h4 class="white-text dashboard-title">Nombre Usuario</h4></a>
+                <a ui-sref="dashboard.home" class="center"><h5 class="white-text dashboard-subtitle">correo@correo.cl</h5></a>
             </div>
         </li>
         <li><div class="divider"></div></li>
-        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.home"><i class="fas fa-tachometer-alt icon-margin"></i>Dashboard</a></li>
-        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.upload"><i class="fas fa-upload icon-margin"></i>Subir CSV</a></li>
-        <li ui-sref-active="active"><a class="white-text" ui-sref="dashboard.icd10s"><i class="fas fa-file-alt icon-margin"></i>ICD10's</a></li>
+        <li ui-sref-active="active"><a class="white-text dashboard-text" ui-sref="dashboard.home"><i class="fas fa-tachometer-alt icon-margin"></i>Dashboard</a></li>
+        <li ui-sref-active="active"><a class="white-text dashboard-text" ui-sref="dashboard.upload"><i class="fas fa-upload icon-margin"></i>Subir CSV</a></li>
+        <li ui-sref-active="active"><a class="white-text dashboard-text" ui-sref="dashboard.icd10s"><i class="fas fa-file-alt icon-margin"></i>ICD10's</a></li>
     </ul>
-    <div class="navbar-fixed">
+    <!--<div class="navbar-fixed">
         <nav class="red darken-3">
             <div class="nav-wrapper">
-                <ul class="right hide-on-med-and-down">
+                <ul class="right">
                     <li><a ><i class="material-icons">search</i></a></li>
                     <li><a ><i class="material-icons">view_module</i></a></li>
                     <li><a ><i class="material-icons">refresh</i></a></li>
@@ -23,6 +23,6 @@
                 </ul>
             </div>
         </nav>
-    </div>
-    <div ui-view="dashboard"></div>>
+    </div>-->
+    <div ui-view="dashboard"></div>
 </div>
