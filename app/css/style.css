@@ -10,3 +10,10 @@
 .margin{
     margin: 20px !important;
 }
+#loginCard{
+    height: 100vh;
+    margin: 0;
+}
+input{
+    font-size:24px !important;
+}

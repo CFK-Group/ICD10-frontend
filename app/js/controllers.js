@@ -95,4 +95,8 @@ app.controller('HomeCtrl', function ($scope) {
     }
 })
 
+.controller('LoginCtrl', function($scope){
+
+})
+
 ;
