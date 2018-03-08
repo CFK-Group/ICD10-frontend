@@ -17,3 +17,13 @@
 input{
     font-size:24px !important;
 }
+#loginCard:before{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: url('../img/VTR-background.jpg') no-repeat;
+    background-size: cover;
+    filter: blur(6px);
+    z-index: -1;
+    content: "";
+}
