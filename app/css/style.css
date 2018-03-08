@@ -1,3 +1,6 @@
+.navbar-fixed{
+    margin-bottom: 15px;
+}
 .icon-margin{
     margin-right: 15px;
 }
@@ -17,6 +20,9 @@
 input{
     font-size:24px !important;
 }
+input.login{
+    font-size: 15px !important;
+}
 #loginCard:before{
     height: 100%;
     width: 100%;
@@ -26,4 +32,12 @@ input{
     filter: blur(6px);
     z-index: -1;
     content: "";
+}
+span.badge{
+    padding: 3px 6px;
+    float:none;
+    margin-bottom: 5px;
+}
+.row-small-margin{
+    margin-bottom: 0px!important;
 }

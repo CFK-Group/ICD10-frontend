@@ -1,14 +1,17 @@
-var app = angular.module('Dashboard',['ui.router','ui.materialize', 'ngResource']);
+var app = angular.module('Dashboard',['ui.router','ui.materialize','ngResource','ngCookies']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/dashboard/home");
+    $urlRouterProvider.otherwise("/login");
 
     $stateProvider
         .state('login', {
             url: '/login',
             templateUrl: 'app/views/login.html',
-            controller: 'LoginCtrl'
+            controller: 'LoginCtrl',
+            params: {
+                obj: null
+            }
         })
         // setup an abstract state for the dashboard directive
         .state('dashboard', {
@@ -50,10 +53,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.run(function($rootScope){
+app.run(function($rootScope, $cookies, $state){
     $rootScope.$on('$stateChangeSuccess', function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-    })
+    });
 });
 
 app.directive('filesModel', function($parse){

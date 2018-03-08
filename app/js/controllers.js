@@ -1,4 +1,10 @@
-app.controller('HomeCtrl', function ($scope) {
+app.controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $global) {
+    //Verifica si el usuario esta logeado, sino lo devuelve al login
+    $global.checkAuth();
+    $scope.logout = function () {
+        $global.logout();
+    };
+
     var chartData = {
         type: 'line',  // Specify your chart type here.
         "scale-x": {
@@ -95,8 +101,43 @@ app.controller('HomeCtrl', function ($scope) {
     }
 })
 
-.controller('LoginCtrl', function($scope){
+.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state, $cookies){
 
+    if ($stateParams.obj){
+        if ($stateParams.obj.Error){
+            $scope.error = $stateParams.obj.Error;
+        }else if($stateParams.obj.Success) {
+            $scope.success = $stateParams.obj.Success;
+        }else{
+            $scope.error = '';
+            $scope.success = '';
+        }
+    }else{
+        $scope.error = '';
+        $scope.success = '';
+    }
+
+    $scope.login = function(){
+        apiConnection.login().save($scope.loginForm).$promise.then(
+            function (response) {
+                    $cookies.put('token', response.token);
+                    $cookies.put('auth', response.auth);
+                    $state.go('dashboard.home');
+            },
+            function (err){
+                $scope.statusText = err.statusText;
+                $scope.status = err.status;
+
+                if ($scope.status === -1 || $scope.status === 500){
+                    $scope.error = 'Error en la plataforma, contacte al soporte de la plataforma'
+                }else if($scope.status === 401 || $scope.status === 404) {
+                    $scope.error = 'Error de usuario o contraseña';
+                }
+
+            }
+        );
+
+    }
 })
 
 ;
