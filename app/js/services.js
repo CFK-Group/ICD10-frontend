@@ -30,6 +30,7 @@ app.constant("apiURL","http://localhost:8100/")
                 var token = $cookies.get('token');
                 var auth = $cookies.get('auth');
                 if (!token) {
+
                     $state.go('login', {obj: {Error: 'Problemas en sus datos de inicio de sesion'}})
                 } else {
                     //console.log('Existe token, valor: ' + token);

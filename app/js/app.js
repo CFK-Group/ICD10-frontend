@@ -18,6 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/dashboard',
             abstract: true,
             templateUrl: 'app/views/dashboard.html',
+            controller: 'DashboardCtrl',
             animation: 'slide-in-up'
         })
         // Each tab has its own nav history stack:

@@ -1,4 +1,47 @@
-app.controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $global) {
+app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state, $cookies){
+
+    if ($stateParams.obj){
+        if ($stateParams.obj.Error){
+            $scope.error = $stateParams.obj.Error;
+            $scope.success = '';
+        }else if($stateParams.obj.Success) {
+            $scope.success = $stateParams.obj.Success;
+            $scope.error = '';
+        }else{
+            $scope.error = '';
+            $scope.success = '';
+        }
+    }else{
+        $scope.error = '';
+        $scope.success = '';
+    }
+
+    $scope.login = function(){
+        apiConnection.login().save($scope.loginForm).$promise.then(
+            function (response) {
+                $cookies.put('token', response.token);
+                $cookies.put('auth', response.auth);
+                $state.go('dashboard.home');
+            },
+            function (err){
+                $scope.statusText = err.statusText;
+                $scope.status = err.status;
+
+                if ($scope.status === -1 || $scope.status === 500){
+                    $scope.error = 'Error en la plataforma, contacte al soporte de la plataforma'
+                }else if($scope.status === 401 || $scope.status === 404) {
+                    $scope.error = 'Error de usuario o contraseña';
+                }
+
+            }
+        );
+
+    }
+})
+.controller('DashboardCtrl', function($scope, $state$, $global){
+
+})
+.controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $global) {
     //Verifica si el usuario esta logeado, sino lo devuelve al login
     $global.checkAuth();
     $scope.logout = function () {
@@ -35,6 +78,7 @@ app.controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $glob
     });
 })
 
+/*
 .controller('UploadCtrl', function($scope, apiConnection){
     $scope.csvToJson = function(csv){
 
@@ -100,44 +144,7 @@ app.controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $glob
         );
     }
 })
+*/
 
-.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state, $cookies){
-
-    if ($stateParams.obj){
-        if ($stateParams.obj.Error){
-            $scope.error = $stateParams.obj.Error;
-        }else if($stateParams.obj.Success) {
-            $scope.success = $stateParams.obj.Success;
-        }else{
-            $scope.error = '';
-            $scope.success = '';
-        }
-    }else{
-        $scope.error = '';
-        $scope.success = '';
-    }
-
-    $scope.login = function(){
-        apiConnection.login().save($scope.loginForm).$promise.then(
-            function (response) {
-                    $cookies.put('token', response.token);
-                    $cookies.put('auth', response.auth);
-                    $state.go('dashboard.home');
-            },
-            function (err){
-                $scope.statusText = err.statusText;
-                $scope.status = err.status;
-
-                if ($scope.status === -1 || $scope.status === 500){
-                    $scope.error = 'Error en la plataforma, contacte al soporte de la plataforma'
-                }else if($scope.status === 401 || $scope.status === 404) {
-                    $scope.error = 'Error de usuario o contraseña';
-                }
-
-            }
-        );
-
-    }
-})
 
 ;
