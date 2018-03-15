@@ -11,6 +11,16 @@ app.constant("apiURL","http://localhost:8100/")
             getICD10s: function(lastId, quantity){
                 return $resource('ICD10/' + lastId + '/' + quantity);
             },
+            getChannels: function(token){
+                return $resource(apiURL + 'channels', {token: token});
+            },
+            saveChannel: function(token){
+                return $resource(apiURL + 'channels/new', {token: token});
+            },
+            getCampaigns: function(token){
+                return $resource(apiURL + 'campaigns', {token: token});
+            }
+            /*
             countICD10s: function(){
                 return $resource(apiURL + 'count/ICD10s')
             },
@@ -19,7 +29,7 @@ app.constant("apiURL","http://localhost:8100/")
             },
             uploadCSV: function(){
                 return $resource(apiURL + 'uploadCSV');
-            }
+            }*/
         };
         return apiConnection;
     })
@@ -30,7 +40,6 @@ app.constant("apiURL","http://localhost:8100/")
                 var token = $cookies.get('token');
                 var auth = $cookies.get('auth');
                 if (!token) {
-
                     $state.go('login', {obj: {Error: 'Problemas en sus datos de inicio de sesion'}})
                 } else {
                     //console.log('Existe token, valor: ' + token);

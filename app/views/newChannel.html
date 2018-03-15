@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+            <div class="card-panel white">
+                <h5 class="card-title">Agregar Canal</h5>
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12 m12 l12" ng-submit="submit()">
+                            <div class="row">
+                                <div input-field class="input-field col s12 m12 l12">
+                                    <input type="text" ng-model="channelForm.nombreCanal" class="validate" id="nombreCanal" required>
+                                    <label for="nombreCanal">Nombre del Canal</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div input-field class="col s12 m4 l4">
+                                    <input type="number" ng-model="channelForm.nGrilla" class="validate" id="nGrilla" required>
+                                    <label for="nGrilla">N&uacute;mero en Grilla</label>
+                                </div>
+                                <div input-field class="col s12 m4 l4">
+                                    <input type="number" ng-model="channelForm.nTB" class="validate" id="nTB" required>
+                                    <label for="nTB">N&uacute;mero de T&B</label>
+                                </div>
+                                <div input-field class="col s12 m4 l4">
+                                    <input type="number" ng-model="channelForm.nNetwork" class="validate" id="nNetwork" required>
+                                    <label for="nNetwork">N&uacute;mero de Network</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m12 l12 center">
+                                    <div class="preloader-wrapper active" ng-if="loading">
+                                        <div class="spinner-layer spinner-red-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <button class="btn waves-effect waves-light red right" type="submit" name="action">Agregar Canal
+                                    <i class="material-icons right">save</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m9 offset-m2">
+            <div class="card white">
+                <div class="card-image">
+                    <img src="app/img/dflorido.png">
+                    <span class="card-title">Listado de campañas agregadas</span>
+                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" ui-sref="campaigns.new"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                    <ul class="collapsible popout" data-collapsible="accordion" ng-if="campaigns">
+                        <li ng-repeat="campaign in campaigns">
+                            <div class="collapsible-header"><i class="far fa-flag icon-margin"></i>{{campaign.nombreCampania}}</div>
+                            <div class="collapsible-body">
+                                <p>
+                                    <b>Fecha de Inicio:</b> {{campaign.inicio | date : 'd - MMMM - yyyy'}} <br>
+                                    <b>Fecha de Termino: </b> {{campaign.fin | date : 'd - MMMM - yyyy'}}
+                                </p>
+                                <br><br>
+                                <h6>
+                                    <b>Orderlines:</b>
+                                </h6>
+                                <table width="100%" class="highlight centered bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>N&uacute;mero</th>
+                                            <th>Spot</th>
+                                            <th>Prioridad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="orderline in campaign.orderlines">
+                                            <td>{{orderline.nombre}}</td>
+                                            <td>{{orderline.id}}</td>
+                                            <td>{{orderline.spot}}</td>
+                                            <td>{{orderline.prioridad}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

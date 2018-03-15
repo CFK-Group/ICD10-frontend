@@ -17,6 +17,7 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     }
 
     $scope.login = function(){
+        alert('logining');
         apiConnection.login().save($scope.loginForm).$promise.then(
             function (response) {
                 $cookies.put('token', response.token);
@@ -24,11 +25,12 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
                 $state.go('dashboard.home');
             },
             function (err){
+                $scope.err = err;
                 $scope.statusText = err.statusText;
                 $scope.status = err.status;
 
                 if ($scope.status === -1 || $scope.status === 500){
-                    $scope.error = 'Error en la plataforma, contacte al soporte de la plataforma'
+                    $scope.error = 'Error en la plataforma, contacte al soporte de la plataforma, ' + $scope.status + ', ' + $scope.statusText;
                 }else if($scope.status === 401 || $scope.status === 404) {
                     $scope.error = 'Error de usuario o contraseña';
                 }
@@ -39,15 +41,13 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     }
 })
 .controller('DashboardCtrl', function($scope, $state$, $global){
-
+    $scope.logout = function () {
+        $global.logout();
+    };
 })
 .controller('HomeCtrl', function ($scope, $cookies, $state, $rootScope, $global) {
     //Verifica si el usuario esta logeado, sino lo devuelve al login
     $global.checkAuth();
-    $scope.logout = function () {
-        $global.logout();
-    };
-
     var chartData = {
         type: 'line',  // Specify your chart type here.
         "scale-x": {
@@ -78,6 +78,138 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     });
 })
 
+.controller('ChannelCtrl', function($scope, $global, apiConnection, $cookies){
+    $global.checkAuth();
+    $token = $cookies.get('token');
+    $scope.channels = apiConnection.getChannels($token).query();
+    console.log($scope.channels);
+})
+
+.controller('NewChannelCtrl', function($scope, $global, apiConnection, $cookies){
+    $scope.loading = false;
+    $global.checkAuth();
+    $token = $cookies.get('token');
+    $scope.channelForm = {
+        nombreCanal: '',
+        nGrilla: '',
+        nTB: '',
+        nNetwork: ''
+    };
+
+    $scope.submit = function(){
+        $scope.loading = true;
+        console.log($scope.channelForm);
+        apiConnection.saveChannel($token).save($scope.channelForm).$promise.then(
+            function(response){
+                $scope.loading = false;
+                Materialize.toast('Canal '+$scope.channelForm.nombreCanal+' Guardado Correctamente', 3000, 'green');
+                $scope.channelForm = {
+                    nombreCanal: '',
+                    nGrilla: '',
+                    nTB: '',
+                    nNetwork: ''
+                };
+                console.log('OK: ', response);
+            },
+            function (err) {
+                $scope.loading = false;
+                Materialize.toast('No se ha podido guardar el Canal '+$scope.channelForm.nombreCanal, 3000, 'red');
+                console.log('Error!!!!: ', err);
+            }
+        );
+    }
+
+})
+.controller('CampaignCtrl', function($scope, $global, apiConnection, $cookies){
+    $global.checkAuth();
+    $token = $cookies.get('token');
+    $scope.campaigns = apiConnection.getCampaigns($token).query();
+    console.log($scope.campaigns);
+})
+.controller('NewCampaignCtrl', function($scope, apiConnection, $global, $cookies){
+
+    $scope.loading = false;
+    $scope.ordersAdded = 0;
+    $global.checkAuth();
+    $token = $cookies.get('token');
+    $scope.campaignForm = {
+        nombre: '',
+        orderid: '',
+        Inicio: '',
+        fin: '',
+        orderlines: [{
+            numero: '',
+            nombre: '',
+            prioridad: '',
+            spot_id: ''
+        }]
+    };
+
+    $scope.spots = [
+        {seachangeCode: 33098, id:1}
+    ];
+
+    $scope.addOrderline = function(){
+        $scope.ordersAdded = $scope.ordersAdded + 1;
+        $scope.campaignForm.orderlines.push({
+            numero: '',
+            nombre: '',
+            prioridad: '',
+            spot_id: ''
+        });
+
+        /*var orderlineField = angular.element("<div class=\"row\">\n" +
+            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
+            "                                            <input type=\"text\" ng-model=\"campaignForm.orderlines["+$scope.ordersAdded+"].nombre\" class=\"validate\">\n" +
+            "                                            <label for=\"\">Nombre</label>\n" +
+            "                                        </div>\n" +
+            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
+            "                                            <input type=\"text\" class=\"validate\">\n" +
+            "                                            <label for=\"\">Order Number</label>\n" +
+            "                                        </div>\n" +
+            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
+            "                                            <select class=\"\" ng-model=\"campaignForm.orderlines["+$scope.ordersAdded+"].spot_id\" material-select>\n" +
+            "                                                <option ng-repeat=\"spot in spots\" value=\"{{spot.id}}\">{{spot.seachangeCode}}</option>\n" +
+            "                                            </select>\n" +
+            "                                            <label for=\"\">Spot</label></div>\n" +
+            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
+            "                                            <input type=\"text\" class=\"validate\">\n" +
+            "                                            <label for=\"\">Prioridad</label>\n" +
+            "                                        </div>\n" +
+            "                                    </div>");
+
+        angular.element(document.querySelector('#orderlines')).append(orderlineField);*/
+        console.log($scope.campaignForm.orderlines[$scope.ordersAdded]);
+
+    };
+
+
+    $scope.submit = function(){
+        console.table($scope.campaignForm);
+        $scope.loading = true;
+
+        /*apiConnection.saveChannel($token).save($scope.channelForm).$promise.then(
+            function(response){
+                $scope.loading = false;
+                Materialize.toast('Canal '+$scope.channelForm.nombreCanal+' Guardado Correctamente', 3000, 'green');
+                $scope.channelForm = {
+                    nombreCanal: '',
+                    nGrilla: '',
+                    nTB: '',
+                    nNetwork: ''
+                };
+                console.log('OK: ', response);
+            },
+            function (err) {
+                $scope.loading = false;
+                Materialize.toast('No se ha podido guardar el Canal '+$scope.channelForm.nombreCanal, 3000, 'red');
+                console.log('Error!!!!: ', err);
+            }
+        );
+        */
+    }
+
+})
 /*
 .controller('UploadCtrl', function($scope, apiConnection){
     $scope.csvToJson = function(csv){

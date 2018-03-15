@@ -25,14 +25,70 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('dashboard.home', {
             url: '/home',
             views: {
-                'dashboard': {
+                'content': {
                     templateUrl: 'app/views/home.html',
                     controller: 'HomeCtrl'
                 }
             },
             animation: 'slide-in-right'
         })
-        .state('dashboard.upload', {
+
+
+        .state('channels', {
+            url: '/channels',
+            abstract: true,
+            templateUrl: 'app/views/dashboard.html',
+            controller: 'DashboardCtrl',
+            animation: 'slide-in-up'
+        })
+        .state('channels.list', {
+            url: '/list',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/channels.html',
+                    controller: 'ChannelCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
+        .state('channels.new', {
+            url: '/new',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/newChannel.html',
+                    controller: 'NewChannelCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
+        .state('campaigns', {
+            url: '/campaigns',
+            abstract: true,
+            templateUrl: 'app/views/dashboard.html',
+            controller: 'DashboardCtrl',
+            animation: 'slide-in-up'
+        })
+        .state('campaigns.list', {
+            url: '/list',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/campaigns.html',
+                    controller: 'CampaignCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
+        .state('campaigns.new', {
+            url: '/new',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/newCampaign.html',
+                    controller: 'NewCampaignCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
+        /*.state('dashboard.upload', {
             url: '/upload',
             views: {
                 'dashboard': {
@@ -51,7 +107,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             },
             animation: 'slide-in-left'
-        })
+        })*/
 });
 
 app.run(function($rootScope, $cookies, $state){

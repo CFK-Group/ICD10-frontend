@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+            <div class="card-panel white">
+                <h5 class="card-title">Agregar Campaña</h5>
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12 m12 l12" ng-submit="submit()">
+                            <div class="row">
+                                <div input-field class="input-field col s12 m12 l12">
+                                    <input type="text" name="nombreCampana" ng-model="campaignForm.nombre" class="validate" id="nombreCampana" required>
+                                    <label for="nombreCampana">Nombre Campaña</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div input-field class="col s12 m4 l4">
+                                    <input type="number" name="orderId" ng-model="campaignForm.orderid" class="validate" id="orderId" required>
+                                    <label for="orderId">Order ID</label>
+                                </div>
+                                <div input-field class="col s12 m4 l4">
+                                    <label for="inicioCampana">Inicio Camapaña</label>
+                                    <input input-date type="text" name="inicioCamapana" ng-model="campaignForm.Inicio" id="inicioCampana" required/>
+                                </div>
+                                <div input-field class="col s12 m4 l4">
+                                    <label for="finCampana">Fin Camapaña</label>
+                                    <input input-date type="text" name="finCampana" ng-model="campaignForm.fin" id="finCampana"/>
+                                </div>
+                            </div>
+
+                            <h6>Agregar Orderline a la campaña</h6>
+
+                            <div class="row">
+                                <div class="col" id="orderlines">
+                                    <div class="row" ng-repeat="orderline in campaignForm.orderlines">
+                                        <div class="input-field col s3 m3 l3">
+                                            <input type="text" ng-model="orderline.nombre" class="validate">
+                                            <label for="">Nombre</label>
+                                        </div>
+                                        <div class="input-field col s3 m3 l3">
+                                            <input type="text" class="validate">
+                                            <label for="">Order Number</label>
+                                        </div>
+                                        <div class="input-field col s3 m3 l3">
+                                            <select class="" ng-model="orderline.spot_id" material-select>
+                                                <option ng-repeat="spot in spots" value="{{spot.id}}">{{spot.seachangeCode}}</option>
+                                            </select>
+                                            <label for="">Spot</label></div>
+                                        <div class="input-field col s3 m3 l3">
+                                            <input type="text" class="validate">
+                                            <label for="">Prioridad</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn-floating btn-large waves-effect waves-light red right" ng-click="addOrderline()"><i class="material-icons">add</i></a>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s12 m12 l12 center">
+                                    <div class="preloader-wrapper active" ng-if="loading">
+                                        <div class="spinner-layer spinner-red-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m12 l12">
+                                <button class="btn waves-effect waves-light red right" type="submit" name="action">Agregar Campaña
+                                    <i class="material-icons right">save</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
