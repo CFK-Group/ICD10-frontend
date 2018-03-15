@@ -17,7 +17,6 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     }
 
     $scope.login = function(){
-        alert('logining');
         apiConnection.login().save($scope.loginForm).$promise.then(
             function (response) {
                 $cookies.put('token', response.token);
@@ -25,7 +24,6 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
                 $state.go('dashboard.home');
             },
             function (err){
-                $scope.err = err;
                 $scope.statusText = err.statusText;
                 $scope.status = err.status;
 
@@ -150,37 +148,12 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     ];
 
     $scope.addOrderline = function(){
-        $scope.ordersAdded = $scope.ordersAdded + 1;
         $scope.campaignForm.orderlines.push({
             numero: '',
             nombre: '',
             prioridad: '',
             spot_id: ''
         });
-
-        /*var orderlineField = angular.element("<div class=\"row\">\n" +
-            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
-            "                                            <input type=\"text\" ng-model=\"campaignForm.orderlines["+$scope.ordersAdded+"].nombre\" class=\"validate\">\n" +
-            "                                            <label for=\"\">Nombre</label>\n" +
-            "                                        </div>\n" +
-            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
-            "                                            <input type=\"text\" class=\"validate\">\n" +
-            "                                            <label for=\"\">Order Number</label>\n" +
-            "                                        </div>\n" +
-            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
-            "                                            <select class=\"\" ng-model=\"campaignForm.orderlines["+$scope.ordersAdded+"].spot_id\" material-select>\n" +
-            "                                                <option ng-repeat=\"spot in spots\" value=\"{{spot.id}}\">{{spot.seachangeCode}}</option>\n" +
-            "                                            </select>\n" +
-            "                                            <label for=\"\">Spot</label></div>\n" +
-            "                                        <div class=\"input-field col s3 m3 l3\">\n" +
-            "                                            <input type=\"text\" class=\"validate\">\n" +
-            "                                            <label for=\"\">Prioridad</label>\n" +
-            "                                        </div>\n" +
-            "                                    </div>");
-
-        angular.element(document.querySelector('#orderlines')).append(orderlineField);*/
-        console.log($scope.campaignForm.orderlines[$scope.ordersAdded]);
-
     };
 
 
@@ -188,25 +161,31 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
         console.table($scope.campaignForm);
         $scope.loading = true;
 
-        /*apiConnection.saveChannel($token).save($scope.channelForm).$promise.then(
+        apiConnection.saveCampaign($token).save($scope.campaignForm).$promise.then(
             function(response){
                 $scope.loading = false;
-                Materialize.toast('Canal '+$scope.channelForm.nombreCanal+' Guardado Correctamente', 3000, 'green');
-                $scope.channelForm = {
-                    nombreCanal: '',
-                    nGrilla: '',
-                    nTB: '',
-                    nNetwork: ''
+                Materialize.toast('Canal '+$scope.channelForm.nombre+' Guardado Correctamente', 3000, 'green');
+                $scope.campaignForm = {
+                    nombre: '',
+                    orderid: '',
+                    Inicio: '',
+                    fin: '',
+                    orderlines: [{
+                        numero: '',
+                        nombre: '',
+                        prioridad: '',
+                        spot_id: ''
+                    }]
                 };
                 console.log('OK: ', response);
             },
             function (err) {
                 $scope.loading = false;
-                Materialize.toast('No se ha podido guardar el Canal '+$scope.channelForm.nombreCanal, 3000, 'red');
+                Materialize.toast('No se ha podido guardar el Canal '+$scope.campaignForm.nombre, 3000, 'red');
                 console.log('Error!!!!: ', err);
             }
         );
-        */
+
     }
 
 })

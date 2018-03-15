@@ -19,7 +19,10 @@ app.constant("apiURL","http://localhost:8100/")
             },
             getCampaigns: function(token){
                 return $resource(apiURL + 'campaigns', {token: token});
-            }
+            },
+            saveCampaign: function(token){
+                return $resource(apiURL + 'campaign/new', {token: token});
+            },
             /*
             countICD10s: function(){
                 return $resource(apiURL + 'count/ICD10s')

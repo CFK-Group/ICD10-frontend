@@ -9,14 +9,14 @@
             <form class="col s12" ng-submit="login()" name="sesionForm">
                 <div class="row row-small-margin">
                     <div class="input-field col s10 offset-s1">
-                        <input ng-model="loginForm.username" id="username" type="text" class="validate" ng-focus="error=''" required name="username">
+                        <input ng-model="loginForm.username" id="username" type="text" class="validate" ng-focus="error=''; success='' " required name="username">
                         <label for="username">Usuario</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
-                        <input ng-model="loginForm.password" id="password" type="password" class="validate" ng-focus="error=''" required name="password">
+                        <input ng-model="loginForm.password" id="password" type="password" class="validate" ng-focus="error=''; success=''" required name="password">
                         <label for="password">Contraseña</label>
                     </div>
                 </div>
@@ -32,7 +32,4 @@
             </form>
         </div>
     </div>
-    <pre>
-        {{err}}
-    </pre>
 </section>
