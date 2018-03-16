@@ -1,4 +1,5 @@
-app.constant("apiURL","http://localhost:8100/")
+//app.constant("apiURL","http://localhost:8100/")
+app.constant("apiURL","http://192.168.2.194:8100/")
 
     .factory('apiConnection', function($resource, apiURL) {
         var apiConnection = {

@@ -20,5 +20,8 @@
     "jquery": "^2.2.4",
     "materialize-css": "latest",
     "multer": "^1.3.0"
+  },
+  "devDependencies": {
+    "hotnode": "0.0.8"
   }
 }
