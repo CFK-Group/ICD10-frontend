@@ -83,6 +83,7 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
 })
 
 .controller('NewChannelCtrl', function($scope, $global, apiConnection, $cookies){
+    $global.checkAuth();
     $scope.loading = false;
     $global.checkAuth();
     $token = $cookies.get('token');
@@ -124,7 +125,7 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     console.log($scope.campaigns);
 })
 .controller('NewCampaignCtrl', function($scope, apiConnection, $global, $cookies){
-
+    $global.checkAuth();
     $scope.loading = false;
     $scope.ordersAdded = 0;
     $global.checkAuth();
