@@ -80,7 +80,6 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     $global.checkAuth();
     $token = $cookies.get('token');
     $scope.channels = apiConnection.getChannels($token).query();
-    console.log($scope.channels);
 })
 
 .controller('NewChannelCtrl', function($scope, $global, apiConnection, $cookies){
@@ -158,13 +157,14 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
 
 
     $scope.submit = function(){
+        console.log("Enviando data para ser procesada");
         console.table($scope.campaignForm);
         $scope.loading = true;
 
         apiConnection.saveCampaign($token).save($scope.campaignForm).$promise.then(
             function(response){
                 $scope.loading = false;
-                Materialize.toast('Canal '+$scope.channelForm.nombre+' Guardado Correctamente', 3000, 'green');
+                Materialize.toast('Canal '+$scope.campaignForm.nombre+' Guardado Correctamente', 3000, 'green');
                 $scope.campaignForm = {
                     nombre: '',
                     orderid: '',
