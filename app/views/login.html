@@ -25,6 +25,18 @@
                         <span class="new badge red" data-badge-caption="Ingrese Nombre de Usuario" ng-if="!sesionForm.username.$valid"></span>
                         <br>
                         <span class="new badge red" data-badge-caption="Ingrese Contraseña" ng-if="!sesionForm.password.$valid"></span>
+                        <br>
+                        <div class="preloader-wrapper active" ng-if="loading">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <input class="btn waves-effect waves-light red darken-3 login" type="submit" id="submit" value="Iniciar Sesión">

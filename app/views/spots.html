@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card white">
+                <div class="card-image">
+                    <img src="app/img/torres2.jpg">
+                    <span class="card-title text-shadow">Listado de spots agregados</span>
+                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" ui-sref="spots.new"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+
+                    <ul class="collapsible popout" data-collapsible="accordion" ng-if="spots">
+                        <li ng-repeat="spot in spots">
+                            <div class="collapsible-header"><i class="far fa-flag icon-margin"></i><b>{{spot.tipo}}</b></div>
+                            <div class="collapsible-body">
+                                <table width="100%" class="highlight centered" ng-if="spot.codes">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>seachangeCode</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    <tr ng-repeat="c in spot.codes">
+                                        <td>{{c.id}}</td>
+                                        <td>{{c.seachangeCode}}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

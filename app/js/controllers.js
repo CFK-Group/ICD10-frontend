@@ -1,5 +1,6 @@
-app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state, $cookies){
-
+app
+.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state, $cookies){
+    $scope.loading = false;
     if ($stateParams.obj){
         if ($stateParams.obj.Error){
             $scope.error = $stateParams.obj.Error;
@@ -17,13 +18,16 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     }
 
     $scope.login = function(){
+        $scope.loading = true;
         apiConnection.login().save($scope.loginForm).$promise.then(
             function (response) {
+                $scope.loading = false;
                 $cookies.put('token', response.token);
                 $cookies.put('auth', response.auth);
                 $state.go('dashboard.home');
             },
             function (err){
+                $scope.loading = false;
                 $scope.statusText = err.statusText;
                 $scope.status = err.status;
 
@@ -75,14 +79,12 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
         data: chartData
     });
 })
-
 .controller('ChannelCtrl', function($scope, $global, apiConnection, $cookies){
     $global.checkAuth();
     $token = $cookies.get('token');
     $scope.channels = apiConnection.getChannels($token).query();
 })
-
-.controller('NewChannelCtrl', function($scope, $global, apiConnection, $cookies){
+.controller('NewChannelCtrl', function($scope, $global, apiConnection, $cookies) {
     $global.checkAuth();
     $scope.loading = false;
     $global.checkAuth();
@@ -190,6 +192,20 @@ app.controller('LoginCtrl', function($scope, $stateParams, apiConnection, $state
     }
 
 })
+.controller('SpotCtrl', function($scope, $global, apiConnection, $cookies){
+    $global.checkAuth();
+    $token = $cookies.get('token');
+    var agiSpots = apiConnection.getSpots($token, 'agi').query();
+    var assetSpots = apiConnection.getSpots($token, 'asset').query();
+    $scope.spots = [
+        {tipo: 'Agis', codes: agiSpots},
+        {tipo: 'Assets', codes: assetSpots}
+    ];
+    console.log($scope.spots);
+})
+
+
+
 /*
 .controller('UploadCtrl', function($scope, apiConnection){
     $scope.csvToJson = function(csv){

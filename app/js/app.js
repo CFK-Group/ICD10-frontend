@@ -88,6 +88,33 @@ app.config(function($stateProvider, $urlRouterProvider) {
             },
             animation: 'slide-in-left'
         })
+        .state('spots', {
+            url: '/spots',
+            abstract: true,
+            templateUrl: 'app/views/dashboard.html',
+            controller: 'DashboardCtrl',
+            animation: 'slide-in-up'
+        })
+        .state('spots.list', {
+            url: '/list',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/spots.html',
+                    controller: 'SpotCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
+        .state('spots.new', {
+            url: '/new',
+            views: {
+                'content':{
+                    templateUrl: 'app/views/newSpot.html',
+                    controller: 'NewSpotCtrl'
+                }
+            },
+            animation: 'slide-in-left'
+        })
         /*.state('dashboard.upload', {
             url: '/upload',
             views: {

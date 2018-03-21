@@ -1,5 +1,5 @@
 //app.constant("apiURL","http://localhost:8100/")
-app.constant("apiURL","http://192.168.2.194:8100/")
+app.constant("apiURL","http://127.0.0.1:8100/")
 
     .factory('apiConnection', function($resource, apiURL) {
         var apiConnection = {
@@ -24,6 +24,9 @@ app.constant("apiURL","http://192.168.2.194:8100/")
             saveCampaign: function(token){
                 return $resource(apiURL + 'campaign/new', {token: token});
             },
+            getSpots: function(token, filter){
+                return $resource(apiURL + 'spots', {token: token, filter: filter});
+            }
             /*
             countICD10s: function(){
                 return $resource(apiURL + 'count/ICD10s')
