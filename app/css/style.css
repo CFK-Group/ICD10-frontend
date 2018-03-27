@@ -41,3 +41,6 @@ span.badge{
 .row-small-margin{
     margin-bottom: 0px!important;
 }
+.fixed [type="checkbox"] + label, .fixed [type="radio"] + label {
+    pointer-events: auto;
+}

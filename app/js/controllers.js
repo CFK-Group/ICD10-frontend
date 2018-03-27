@@ -142,8 +142,11 @@ app
             nombre: '',
             prioridad: '',
             spot_id: ''
-        }]
+        }],
+        hhTags:[{tag:'none'}, {tag: 'ninguno'}]
     };
+
+    $scope.chips = ['Apple','Microsoft', 'Google'];
 
     $scope.spots = [
         {seachangeCode: 33098, id:1}
@@ -203,7 +206,9 @@ app
     ];
     console.log($scope.spots);
 })
-
+.controller('NewSpotCtrl', function($scope, $global){
+    $global.checkAuth();
+})
 
 
 /*

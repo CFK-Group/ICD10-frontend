@@ -27,6 +27,11 @@
                                 </div>
                             </div>
 
+                            <h6>HH Tags</h6>
+                            <div>
+                                <div chips ng-model="chips" secondary-placeholder="secondary placeholder" placeholder="primary placeholder"></div>
+                            </div>
+
                             <h6>Agregar Orderline a la campaña</h6>
 
                             <div class="row">
@@ -34,20 +39,20 @@
                                     <div class="row" ng-repeat="orderline in campaignForm.orderlines">
                                         <div class="input-field col s3 m3 l3">
                                             <input type="text" ng-model="orderline.nombre" class="validate">
-                                            <label for="">Nombre</label>
+                                            <label>Nombre</label>
                                         </div>
                                         <div class="input-field col s3 m3 l3">
                                             <input type="text" class="validate" ng-model="orderline.numero">
-                                            <label for="">Order Number</label>
+                                            <label>Order Number</label>
                                         </div>
                                         <div class="input-field col s3 m3 l3">
                                             <select class="" ng-model="orderline.spot_id" material-select>
                                                 <option ng-repeat="spot in spots" value="{{spot.id}}">{{spot.seachangeCode}}</option>
                                             </select>
-                                            <label for="">Spot</label></div>
+                                            <label>Spot</label></div>
                                         <div class="input-field col s3 m3 l3">
                                             <input type="text" class="validate" ng-model="orderline.prioridad">
-                                            <label for="">Prioridad</label>
+                                            <label>Prioridad</label>
                                         </div>
                                     </div>
                                 </div>
