@@ -161,7 +161,7 @@ app
     };
 
     $scope.autocomplete = {
-        opciones: ["Apple", "Microsoft", "Google", "alex, te paseo."]
+        opciones: ["Apple", "Microsoft", "Google", "alex, te paseo"]
     };
 
     $scope.newChip = '';
