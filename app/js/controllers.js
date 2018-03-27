@@ -146,7 +146,13 @@ app
         hhTags:[{tag:'none'}, {tag: 'ninguno'}]
     };
 
-    $scope.chips = ['Apple','Microsoft', 'Google'];
+    $scope.chips = [{
+        tag: 'Apple',
+    }, {
+        tag: 'Microsoft',
+    },{
+        tag: 'Google',
+    }];
 
     $scope.spots = [
         {seachangeCode: 33098, id:1}

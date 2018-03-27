@@ -28,8 +28,9 @@
                             </div>
 
                             <h6>HH Tags</h6>
-                            <div>
-                                <div chips ng-model="chips" secondary-placeholder="secondary placeholder" placeholder="primary placeholder"></div>
+                            <div class="chip" ng-repeat="chip in chips">
+                                {{chip.tag}}
+                                <i class="close material-icons">close</i>
                             </div>
 
                             <h6>Agregar Orderline a la campaña</h6>
