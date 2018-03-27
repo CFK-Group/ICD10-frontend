@@ -152,7 +152,24 @@ app
         tag: 'Microsoft',
     },{
         tag: 'Google',
+    },{
+        tag: 'alex, te paseo'
     }];
+
+    $scope.deleteChip = function(index){
+        $scope.chips.splice(index, 1);
+    };
+
+    $scope.autocomplete = {
+        opciones: ["Apple", "Microsoft", "Google", "alex, te paseo."]
+    };
+
+    $scope.newChip = '';
+
+    $scope.addChip = function(){
+        $scope.chips.push({tag:$scope.newChip});
+        $scope.newChip = '';
+    };
 
     $scope.spots = [
         {seachangeCode: 33098, id:1}

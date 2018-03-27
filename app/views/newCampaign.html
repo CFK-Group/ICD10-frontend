@@ -28,10 +28,21 @@
                             </div>
 
                             <h6>HH Tags</h6>
-                            <div class="chip" ng-repeat="chip in chips">
-                                {{chip.tag}}
-                                <i class="close material-icons">close</i>
+                            <div class="row">
+                                <div class="chip" ng-repeat="chip in chips">
+                                    {{chip.tag}}
+                                    <i ng-click="deleteChip($index)" class="close material-icons">close</i>
+                                </div>
                             </div>
+                            <form class="row">
+                                <input type="text" ng-model="newChip" placeholder="add a chip" class="col s10" list="autocomplete"/>
+                                <datalist id="autocomplete">
+                                    <select name="_select" id="_select" ng-model="autocomplete">
+                                        <option ng-repeat="opcion in autocomplete.opciones">{{opcion}}</option>
+                                    </select>
+                                </datalist>
+                                <a ng-click="addChip()" class="btn red col s2" ng-class="{disabled: (newChip == '')}"><i class="material-icons">add</i></a>
+                            </form>
 
                             <h6>Agregar Orderline a la campaña</h6>
 
