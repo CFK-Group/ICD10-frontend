@@ -141,46 +141,21 @@ app
             numero: '',
             nombre: '',
             prioridad: '',
-            spot_id: ''
-        }],
-        hhTags:[{tag:'none'}, {tag: 'ninguno'}]
+            spot_id: '',
+            hhtag: ''
+        }]
     };
 
-    $scope.chips = [{
-        tag: 'Apple',
-    }, {
-        tag: 'Microsoft',
-    },{
-        tag: 'Google',
-    },{
-        tag: 'alex, te paseo'
-    }];
-
-    $scope.deleteChip = function(index){
-        $scope.chips.splice(index, 1);
-    };
-
-    $scope.autocomplete = {
-        opciones: ["Apple", "Microsoft", "Google", "alex, te paseo"]
-    };
-
-    $scope.newChip = '';
-
-    $scope.addChip = function(){
-        $scope.chips.push({tag:$scope.newChip});
-        $scope.newChip = '';
-    };
-
-    $scope.spots = [
-        {seachangeCode: 33098, id:1}
-    ];
+    $scope.hhtags = apiConnection.getHHTags($token).query();
+    $scope.spots = apiConnection.getSpots($token, 'asset').query();
 
     $scope.addOrderline = function(){
         $scope.campaignForm.orderlines.push({
             numero: '',
             nombre: '',
             prioridad: '',
-            spot_id: ''
+            spot_id: '',
+            hhtag: ''
         });
     };
 
@@ -203,7 +178,8 @@ app
                         numero: '',
                         nombre: '',
                         prioridad: '',
-                        spot_id: ''
+                        spot_id: '',
+                        hhtag: ''
                     }]
                 };
                 console.log('OK: ', response);
@@ -229,8 +205,36 @@ app
     ];
     console.log($scope.spots);
 })
-.controller('NewSpotCtrl', function($scope, $global){
+.controller('NewSpotCtrl', function($scope, $global, apiConnection, $cookies){
     $global.checkAuth();
+    $token = $cookies.get('token');
+    $scope.spotForm = {
+        seachangeCode: '',
+        isAsset: false,
+        isAgi: false
+    };
+    $scope.submit = function() {
+        console.table($scope.spotForm);
+        $scope.loading = true;
+        //if  ($scope.spotForm.isAgi
+        apiConnection.saveSpot($token).save($scope.spotForm).$promise.then(
+            function (response) {
+                $scope.loading = false;
+                Materialize.toast('Spot '+$scope.spotForm.seachangeCode+' Guardado Correctamente', 3000, 'green');
+                $scope.spotForm = {
+                    seachangeCode: '',
+                    isAsset: '',
+                    isAgi: ''
+                };
+                console.log(response);
+            },
+            function (error) {
+                $scope.loading = false;
+                Materialize.toast('No se ha podido guardar el Spot '+$scope.spotForm.seachangeCode, 3000, 'red');
+                console.log(error);
+            }
+        );
+    }
 })
 
 

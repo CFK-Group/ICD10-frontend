@@ -26,6 +26,12 @@ app.constant("apiURL","http://127.0.0.1:8100/")
             },
             getSpots: function(token, filter){
                 return $resource(apiURL + 'spots', {token: token, filter: filter});
+            },
+            saveSpot: function(token){
+                return $resource(apiURL + 'spots/new', {token: token});
+            },
+            getHHTags: function(token){
+                return $resource(apiURL + 'hhTags', {token: token});
             }
             /*
             countICD10s: function(){
