@@ -44,3 +44,7 @@ span.badge{
 .fixed [type="checkbox"] + label, .fixed [type="radio"] + label {
     pointer-events: auto;
 }
+fieldset{
+    margin: 30px;
+    padding: 2%;
+}

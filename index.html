@@ -6,9 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ICD10 Dashboard</title>
+    <link rel="stylesheet" href="app/css/normalize.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.css">
     <link rel="stylesheet" href="node_modules/animate.css/animate.css">
+    <link rel="stylesheet" href="node_modules/angular-multiple-select/build/multiple-select.css">
     <link rel="stylesheet" href="app/css/style.css">
 </head>
 <body ng-app="Dashboard" class="grey lighten-3">
@@ -16,7 +18,6 @@
     <!--Inyeccion de vistas-->
     <main ui-view></main>
     <main ui-view="dashboard"></main>
-
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.js"></script>
     <script src="node_modules/angular/angular.js"></script>
@@ -31,5 +32,8 @@
     <script src="app/js/services.js"></script>
     <script src="app/js/script.js"></script>
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="node_modules/angular-multiple-select/build/multiple-select.js"></script>
+
+
 </body>
 </html>

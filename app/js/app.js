@@ -1,4 +1,4 @@
-var app = angular.module('Dashboard',['ui.router','ui.materialize','ngResource','ngCookies']);
+var app = angular.module('Dashboard',['ui.router','ui.materialize','ngResource','ngCookies', 'multipleSelect']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 

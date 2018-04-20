@@ -1,11 +1,11 @@
-<div class="container">
+<div>
     <div class="row">
-        <div class="col s12 m10 offset-m1 l10 offset-l1">
+        <div class="col s12 m12 l12">
             <div class="card-panel white">
                 <h5 class="card-title">Agregar Campaña</h5>
                 <div class="card-content">
                     <div class="row">
-                        <form class="col s12 m12 l12" ng-submit="submit()">
+                        <form class="col s12 m12 l12">
                             <div class="row">
                                 <div input-field class="input-field col s12 m12 l12">
                                     <input type="text" name="nombreCampana" ng-model="campaignForm.nombre" class="validate" id="nombreCampana" required>
@@ -30,32 +30,47 @@
                             <h6>Agregar Orderline a la campaña</h6>
 
                             <div class="row">
-                                <div class="col" id="orderlines">
-                                    <div class="row" ng-repeat="orderline in campaignForm.orderlines">
-                                        <div class="input-field col s12 m3 l3">
-                                            <input type="text" ng-model="orderline.nombre" class="validate">
-                                            <label>Nombre</label>
-                                        </div>
-                                        <div class="input-field col s12 m2 l2">
-                                            <input type="text" class="validate" ng-model="orderline.numero">
-                                            <label>Order Number</label>
-                                        </div>
-                                        <div class="input-field col s12 m2 l2">
-                                            <select class="" ng-model="orderline.spot_id" material-select>
-                                                <option ng-repeat="spot in spots" value="{{spot.id}}">{{spot.seachangeCode}}</option>
-                                            </select>
-                                            <label>Spot</label></div>
-                                        <div class="input-field col s12 m2 l2">
-                                            <input type="text" class="validate" ng-model="orderline.prioridad">
-                                            <label>Prioridad</label>
-                                        </div>
-                                        <div class="input-field col s12 m3 l3">
-                                            <input list="tags" id="tagsInput" type="text" ng-model="orderline.hhtag"/>
-                                            <label>Household Tag</label>
-                                            <datalist id="tags" ng-repeat="hhtag in hhtags">
-                                                <option value="Chrome">
-                                            </datalist>
-                                        </div>
+                                <div id="orderlines">
+                                    <div ng-repeat="orderline in campaignForm.orderlines">
+                                        <fieldset>
+                                            <div class="row" >
+                                                <div class="input-field col s12 m3 l3">
+                                                    <input type="text" ng-model="orderline.nombre" class="validate">
+                                                    <label>Nombre</label>
+                                                </div>
+                                                <div class="input-field col s12 m3 l3">
+                                                    <input type="text" class="validate" ng-model="orderline.numero">
+                                                    <label>Order Number</label>
+                                                </div>
+                                                <div class="input-field col s12 m3 l3">
+                                                    <select class="" ng-model="orderline.spot_id" material-select>
+                                                        <option ng-repeat="spot in spots" value="{{spot.id}}">{{spot.seachangeCode}}</option>
+                                                    </select>
+                                                    <label>Spot</label></div>
+                                                <div class="input-field col s12 m3 l3">
+                                                    <input type="text" class="validate" ng-model="orderline.prioridad">
+                                                    <label>Prioridad</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12 m12 l12">
+                                                    <!-- <input list="tags" id="tagsInput" type="text" ng-model="orderline.hhtag" multiple/>
+                                                     <label>Household Tags</label>
+                                                     <datalist id="tags">
+                                                         <option value="{{hhtag.nombre}}" ng-repeat="hhtag in hhtags">
+                                                     </datalist>-->
+
+                                                    <multiple-autocomplete ng-model="orderline.hhtag",
+                                                                           before-select-item="beforeSelectItem",
+                                                                           object-property="nombre"
+                                                                           suggestions-arr="hhtags"
+                                                                           id="hht">
+                                                    </multiple-autocomplete>
+                                                    <label class="active" for="hht" style="margin-bottom: 5px">HHtags</label>
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                     <a class="btn-floating btn-large waves-effect waves-light red right" ng-click="addOrderline()" ng-class="{disabled: loading}"><i class="material-icons">add</i></a>
                                 </div>
@@ -78,7 +93,7 @@
                             </div>
 
                             <div class="col s12 m12 l12">
-                                <button class="btn waves-effect waves-light red right" type="submit" name="action">Agregar Campaña
+                                <button class="btn waves-effect waves-light red right" ng-click="submit()" type="button" name="action">Agregar Campaña
                                     <i class="material-icons right">save</i>
                                 </button>
                             </div>

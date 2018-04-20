@@ -149,6 +149,14 @@ app
     $scope.hhtags = apiConnection.getHHTags($token).query();
     $scope.spots = apiConnection.getSpots($token, 'asset').query();
 
+    $scope.optionsList = [
+        {id: 1,  name : "Java"},
+        {id: 2,  name : "C"},
+        {id: 3,  name : "C++"},
+        {id: 4,  name : "AngularJs"},
+        {id: 5,  name : "JavaScript"}
+    ];
+
     $scope.addOrderline = function(){
         $scope.campaignForm.orderlines.push({
             numero: '',
@@ -168,7 +176,7 @@ app
         apiConnection.saveCampaign($token).save($scope.campaignForm).$promise.then(
             function(response){
                 $scope.loading = false;
-                Materialize.toast('Canal '+$scope.campaignForm.nombre+' Guardado Correctamente', 3000, 'green');
+                Materialize.toast('Campaña '+$scope.campaignForm.nombre+' Guardado Correctamente', 3000, 'green');
                 $scope.campaignForm = {
                     nombre: '',
                     orderid: '',
@@ -186,7 +194,7 @@ app
             },
             function (err) {
                 $scope.loading = false;
-                Materialize.toast('No se ha podido guardar el Canal '+$scope.campaignForm.nombre, 3000, 'red');
+                Materialize.toast('No se ha podido guardar la campaña '+$scope.campaignForm.nombre, 3000, 'red');
                 console.log('Error!!!!: ', err);
             }
         );
